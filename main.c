@@ -4,10 +4,10 @@
 #include <stdio.h>
 
 #include "cub3d.h"
-#include "map/map.h"
 #include "vector/point.h"
 #include "render/render.h"
-#include "utils.h"
+#include "get_next_line/get_next_line.h"
+#include "file/file.h"
 
 #define map_width 10
 #define map_height 10
@@ -80,32 +80,12 @@ int map[10][10]=
 	//A
 	if (keycode == 0)
 	{
-		vars->player.cos = cos(deg_to_rad(vars->player.dir + 90)) * vars->player.speed;
-		vars->player.sin = sin(deg_to_rad(vars->player.dir + 90)) * vars->player.speed;
 		
-		float next_x = vars->player.pos.x - vars->player.cos;
-		float next_y = vars->player.pos.y - vars->player.sin;
-		
-		if (map[(int)next_y][(int)next_x] == 0)
-		{
-			vars->player.pos.x = next_x;
-			vars->player.pos.y = next_y;
-		}
 	}
 	//D
 	if (keycode == 2)
 	{
-		vars->player.cos = cos(deg_to_rad(vars->player.dir - 90)) * vars->player.speed;
-		vars->player.sin = sin(deg_to_rad(vars->player.dir - 90)) * vars->player.speed;
 		
-		float next_x = vars->player.pos.x - vars->player.cos;
-		float next_y = vars->player.pos.y - vars->player.sin;
-
-		if (map[(int)next_y][(int)next_x] == 0)
-		{
-			vars->player.pos.x = next_x;
-			vars->player.pos.y = next_y;
-		}
 	}
 	return (1);
 }
@@ -139,6 +119,9 @@ int	main(void)
 	vars->sprite_order[1].x = 2.5;
 	vars->sprite_order[1].y = 2.5;
 
+	int file_ok = check_file(&vars, "map.cub");
+
+	/*
 	vars->mlx = mlx_init();
 	vars->window = mlx_new_window(vars->mlx, vars->screen.width, vars->screen.height, "cub3d");
 
@@ -147,15 +130,14 @@ int	main(void)
 	vars->texture_north.img = mlx_xpm_file_to_image(vars->mlx, "./textures/redbrick.xpm", &vars->texture_north.width, &vars->texture_north.heigth);
 	vars->texture_north.addr = mlx_get_data_addr(vars->texture_north.img, &vars->texture_north.bits_per_pixel, &vars->texture_north.line_length, &vars->texture_north.endian);
 
-	
-
 	vars->sprite.img = mlx_xpm_file_to_image(vars->mlx, "./textures/barrel.xpm", &vars->sprite.width, &vars->sprite.heigth);
 	vars->sprite.addr = mlx_get_data_addr(vars->sprite.img, &vars->sprite.bits_per_pixel, &vars->sprite.line_length, &vars->sprite.endian);
-
-	//render(vars);
+	
+	render(vars);
 	mlx_loop_hook(vars->mlx, render, vars);
 	mlx_key_hook(vars->window, key_handler, vars);
 	mlx_loop(vars->mlx);
+	*/
 
 	free(vars);
 	return (0);
