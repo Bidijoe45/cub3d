@@ -28,32 +28,18 @@ void close_window(t_vars *vars)
 
 int	key_handler(int keycode, t_vars *vars)
 {
-	int map[24][24]=
+int map[10][10]=
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+  {1,1,1,1,1,1,1,1,1,1},
+  {1,1,0,0,0,0,0,0,1,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,1,1,0,1,0,0,0,0,1},
+  {1,0,0,0,1,0,0,0,0,1},
+  {1,0,0,0,1,0,0,0,0,1},
+  {1,0,0,0,1,0,0,0,1,1},
+  {1,1,1,1,1,1,1,1,1,1},
 };
 
 	printf("keycode pressed: %d\n", keycode);
@@ -133,23 +119,38 @@ int	main(void)
 	vars->screen.width = 640;
 	vars->screen.height = 480;
 	
-	vars->player.pos_x = 22;
-	vars->player.pos_y = 12;
+	vars->player.pos_x = 3;
+	vars->player.pos_y = 3;
 	vars->player.dir_x = -1;
 	vars->player.dir_y = 0;
 	vars->player.plane_x = 0;
 	vars->player.plane_y = 0.66;
 	vars->player.speed = 0.5;
 	vars->player.rot_speed = 0.2;
+	
+	vars->zbuffer = malloc(sizeof(double) * vars->screen.width);
+
+	vars->sprite_number = 2;
+	vars->sprite_order = malloc(sizeof(t_sprite) * vars->sprite_number);
+
+	vars->sprite_order[0].x = 7.5;
+	vars->sprite_order[0].y = 2.5;
+
+	vars->sprite_order[1].x = 2.5;
+	vars->sprite_order[1].y = 2.5;
 
 	vars->mlx = mlx_init();
 	vars->window = mlx_new_window(vars->mlx, vars->screen.width, vars->screen.height, "cub3d");
 
-	//load texture
-	/*
-	vars->texture_north.img = mlx_xpm_file_to_image(vars->mlx, "./textures/texture_wall_2.xpm", &vars->texture_north.width, &vars->texture_north.heigth);
+	//load textures
+	
+	vars->texture_north.img = mlx_xpm_file_to_image(vars->mlx, "./textures/redbrick.xpm", &vars->texture_north.width, &vars->texture_north.heigth);
 	vars->texture_north.addr = mlx_get_data_addr(vars->texture_north.img, &vars->texture_north.bits_per_pixel, &vars->texture_north.line_length, &vars->texture_north.endian);
-	*/
+
+	
+
+	vars->sprite.img = mlx_xpm_file_to_image(vars->mlx, "./textures/barrel.xpm", &vars->sprite.width, &vars->sprite.heigth);
+	vars->sprite.addr = mlx_get_data_addr(vars->sprite.img, &vars->sprite.bits_per_pixel, &vars->sprite.line_length, &vars->sprite.endian);
 
 	//render(vars);
 	mlx_loop_hook(vars->mlx, render, vars);
