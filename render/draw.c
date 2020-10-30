@@ -6,19 +6,21 @@
 /*   By: apavel <apavel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 11:15:13 by apavel            #+#    #+#             */
-/*   Updated: 2020/09/01 11:59:24 by apavel           ###   ########.fr       */
+/*   Updated: 2020/10/30 14:01:42 by apavel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-void            pixel_put(t_img *vars, int x, int y, int color)
+void            pixel_put(t_img *img, int x, int y, int color)
 {
     char    *dst;
+    
+    //printf("%d %d\n", x, y);
 
-    if (x < 0 || x >= 640 || y < 0 || y >= 480)
-        return ;
-    dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
+    //if (x < 0 || y < 0 || x >= img->width || y >= img->heigth)
+     //   return ;
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
     *(unsigned int*)dst = color;
 }
 
