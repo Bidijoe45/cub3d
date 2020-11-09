@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall.h                                             :+:      :+:    :+:   */
+/*   img_to_bmp.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavel <apavel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 11:35:05 by apavel            #+#    #+#             */
-/*   Updated: 2020/07/23 11:36:35 by apavel           ###   ########.fr       */
+/*   Created: 2020/11/05 11:12:14 by apavel            #+#    #+#             */
+/*   Updated: 2020/11/05 12:11:26 by apavel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WALL_H
-# define WALL_H
+#ifndef IMG_TO_BMP_H
+# define IMG_TO_BMP_H
 
-typedef struct	s_wall
-{
-	int			height;
-	int			start;
-	int			end;
-}				t_wall;
+# include "../cub3d.h"
+# include "image.h"
+
+void	frame_to_bmp(t_vars *vars, t_img img);
 
 #endif

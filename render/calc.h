@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   calc.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavel <apavel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 13:03:26 by apavel            #+#    #+#             */
-/*   Updated: 2020/07/15 13:06:40 by apavel           ###   ########.fr       */
+/*   Created: 2020/11/05 11:33:33 by apavel            #+#    #+#             */
+/*   Updated: 2020/11/05 12:10:36 by apavel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef CALC_H
+# define CALC_H
 
-#include "../vector/point.h"
+# include "../cub3d.h"
 
-typedef struct	s_ray
-{
-	t_point		pos;
-	float		dir;
-	float		cos;
-	float		sin;
-
-}				t_ray;
+void	calc_ray_dir(t_vars *vars);
+void	calc_delta_dist(t_vars *vars);
+void	calc_side_dist(t_vars *vars);
+void	calc_wall_texture(t_vars *vars);
+void	calc_dist_to_sprites(t_vars *vars);
 
 #endif
