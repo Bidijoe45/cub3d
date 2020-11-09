@@ -6,7 +6,7 @@
 /*   By: apavel <apavel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:02:23 by apavel            #+#    #+#             */
-/*   Updated: 2020/11/05 13:22:20 by apavel           ###   ########.fr       */
+/*   Updated: 2020/11/09 10:53:04 by apavel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# include "entities/player.h"
-# include "render/image.h"
-# include "entities/sprite.h"
-# include "libft/libft.h"
+# include "./render/image.h"
+# include "./entities/player.h"
+# include "./entities/sprite.h"
+# include "./libft/libft.h"
 # include "./parser_cub/file.h"
 
 typedef	struct		s_keys
