@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"parser.h": "c",
+		"draw.h": "c",
+		"locale": "c"
+	}
+}
